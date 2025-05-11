@@ -1,7 +1,6 @@
 from fastapi import FastAPI, Path, HTTPException
 from typing import Dict, List
 import httpx
-import asyncio
 import os
 from dotenv import load_dotenv  
 
@@ -60,6 +59,15 @@ async def get_numbers(numberid: str = Path(..., regex="^[pfer]$")) -> Dict:
                 number_windows[numberid].pop(0)
     curr_state = number_windows[numberid].copy()
     avg = round(sum(curr_state) / len(curr_state), 2) if curr_state else 0.0
+
+    ## [10,20,30,40,50]
+    ## avg = 30 and total = 150
+
+    ## [20 , 50]
+    #  total = 120
+
+    # adding total = 190 avg = 190/ 5
+
     return {
         "windowPrevState": prev_state,
         "windowCurrState": curr_state,
@@ -67,3 +75,11 @@ async def get_numbers(numberid: str = Path(..., regex="^[pfer]$")) -> Dict:
         "avg": avg
     } 
 
+#sqllite_client
+#store and get
+
+#    DATA         Average     Total 
+#    [10,20,30]     20          60
+#    [10,50,90]     50          150
+#    [100,120]      110         
+#    [10,20,30]     

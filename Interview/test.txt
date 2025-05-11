@@ -1,0 +1,15 @@
+
+crud create read update delete
+
+date of expense                             food   
+category                                        groceries
+    subcategory                                 drinks
+amount
+description
+
+Get all  transaction
+get category get subcategory
+
+create
+update
+delete
